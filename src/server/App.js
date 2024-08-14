@@ -1,6 +1,7 @@
 import express from "express";
 import Database from "../config/DatabaseConnection.js";
 import UserRoute from "../routes/UserRoute.js";
+import AuthRoute from "../routes/AuthRoute.js";
 
 
 class Server {
@@ -19,6 +20,7 @@ class Server {
 
     routes() {
         this.app.use("/users", UserRoute);
+        this.app.use("/auth", AuthRoute);
     }
 
     async start() {
