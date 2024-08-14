@@ -18,6 +18,20 @@ class UserRepository {
 
         return await user.create(data);
     }
+
+    async edit(data) {
+        const userModel = this.db.getModel("User");
+        if(!userModel) throw new Error("User model not found");
+
+        return await userModel.updateOne({_id: data.id}, data);
+    }
+
+    async delete(id) {
+        const userModel = this.db.getModel("User");
+        if(!userModel) throw new Error("User model not found");
+
+        return await userModel.deleteOne({_id: id});
+    }
 }
 
 export default UserRepository;

@@ -31,4 +31,28 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.put("/:id", async (req, res) => {
+    const userService = new UserService();
+
+    try {
+        const result = await userService.edit(req.body, req.params.id);
+        return res.status(200).json(result);
+    }catch(e) {
+        console.log(e)
+        return res.status(500).json({message: e.message});
+    }
+});
+
+router.delete("/:id", async (req, res) => {
+    const userService = new UserService();
+
+    try {
+        const result = await userService.delete(req.params.id);
+        return res.status(200).json(result);
+    }catch(e) {
+        console.log(e);
+        return res.status(500).json({message: e.message});
+    }
+});
+
 export default router;
